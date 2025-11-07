@@ -11,7 +11,6 @@ export interface AuthUser {
   accessToken?: string;
 }
 
-
 @Injectable()
 export class GoogleStrategy extends PassportStrategy(Strategy, 'google') {
   constructor() {
@@ -31,17 +30,19 @@ export class GoogleStrategy extends PassportStrategy(Strategy, 'google') {
     });
   }
 
- validate(accessToken: string, refreshToken: string, profile: any): AuthUser {
-  const email = profile?.emails && profile.emails.length > 0 ? profile.emails[0].value : null;
+  validate(accessToken: string, refreshToken: string, profile: any): AuthUser {
+    const email =
+      profile?.emails && profile.emails.length > 0
+        ? profile.emails[0].value
+        : null;
 
-  return {
-    email: email ?? undefined,
-    provider: 'google',
-    providerId: profile?.id ?? 'unknown',
-    accessToken,
-  };
-}
-
+    return {
+      email: email ?? undefined,
+      provider: 'google',
+      providerId: profile?.id ?? 'unknown',
+      accessToken,
+    };
+  }
 }
 // backend/controller.ts
 import { Controller, Get, Req, Res, UseGuards } from '@nestjs/common';
@@ -50,10 +51,9 @@ import express from 'express';
 
 @Controller()
 export class AppController {
-
   @Get('/')
   getRoot() {
-    return 'Welcome to the Auth Service';
+    return { message: 'Welcome to the Auth Service' };
   }
 
   @Get('google')
