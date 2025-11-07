@@ -16,7 +16,7 @@ export class GoogleStrategy extends PassportStrategy(Strategy, 'google') {
   constructor() {
     const clientID = process.env.GOOGLE_CLIENT_ID;
     const clientSecret = process.env.GOOGLE_CLIENT_SECRET;
-    const callbackURL = 'http://localhost:4444/google/callback';
+    const callbackURL = 'https://my-test-flax.vercel.app/google/callback';
 
     if (!clientID || !clientSecret) {
       throw new Error('Google client ID and secret not found');
