@@ -11,12 +11,13 @@ export interface AuthUser {
   accessToken?: string;
 }
 
+
 @Injectable()
 export class GoogleStrategy extends PassportStrategy(Strategy, 'google') {
   constructor() {
     const clientID = process.env.GOOGLE_CLIENT_ID;
     const clientSecret = process.env.GOOGLE_CLIENT_SECRET;
-    const callbackURL = 'https://my-test-flax.vercel.app/google/callback';
+    const callbackURL = 'http://localhost:4444/google/callback';
 
     if (!clientID || !clientSecret) {
       throw new Error('Google client ID and secret not found');
@@ -49,6 +50,12 @@ import express from 'express';
 
 @Controller()
 export class AppController {
+
+  @Get('/')
+  getRoot() {
+    return 'Welcome to the Auth Service';
+  }
+
   @Get('google')
   @UseGuards(AuthGuard('google'))
   async googleLogin() {}
