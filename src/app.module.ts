@@ -19,7 +19,7 @@ export class GoogleStrategy extends PassportStrategy(Strategy, 'google') {
   constructor() {
     const clientID = process.env.GOOGLE_CLIENT_ID;
     const clientSecret = process.env.GOOGLE_CLIENT_SECRET;
-    const callbackURL = 'https://my-test-flax.vercel.app/google/callback';
+    const callbackURL = process.env.GOOGLE_CALLBACK_URL;
 
     if (!clientID || !clientSecret) {
       throw new Error('Google client ID and secret not found');
@@ -87,7 +87,6 @@ class AppController {
   getRoot() {
     return { message: 'Welcome to the Auth Service' };
   }
-
 
   @Get('google')
   @UseGuards(AuthGuard('google'))
