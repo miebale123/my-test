@@ -109,8 +109,8 @@ class AppController {
     console.log('user:', user);
 
     return res.redirect(
-      // `https://google-auth-gilt.vercel.app/?token=${accessToken}&email=${encodeURIComponent(email)}`,
-      `http://localhost:4200/?token=${accessToken}&email=${encodeURIComponent(email)}`,
+      `https://google-auth-gilt.vercel.app/?token=${accessToken}&email=${encodeURIComponent(email)}`,
+      // `http://localhost:4200/?token=${accessToken}&email=${encodeURIComponent(email)}`,
     );
   }
 }
